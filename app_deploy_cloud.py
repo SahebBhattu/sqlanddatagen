@@ -64,7 +64,7 @@ if submit:
     st.header("The generated SQL query is")
     st.subheader(response)
     print(response)
-    response=read_sql_query(response,"Consumer_test1.db")  
+    response=read_sql_query(response,"/Consumer_test1.db")  
     st.header("The generated output is")
     for row in response:
         print(row)
