@@ -49,6 +49,7 @@ prompt=[
     only an executable SQL should be returned in the response
     don't add ';' at the end
     don't add '```sql' at the beginning , only an executable SQL query in the response
+    design queries for sqlite database only
     
 """
 
