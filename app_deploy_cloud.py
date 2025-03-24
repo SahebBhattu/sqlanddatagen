@@ -47,6 +47,7 @@ prompt=[
     where Country="USA";
     also the sql code should not have ``` in beginning or end and sql word in output
     only an executable SQL should be returned in the response
+    don't add ';' at the end
 """
 
 
