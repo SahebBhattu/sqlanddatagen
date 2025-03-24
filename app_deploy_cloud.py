@@ -46,7 +46,7 @@ prompt=[
     the SQL command will be something like this SELECT * FROM Customers
     where Country="USA";
     also the sql code should not have ``` in beginning or end and sql word in output
-    only an executable SQL should be returned
+    only an executable SQL should be returned in the response
 """
 
 
