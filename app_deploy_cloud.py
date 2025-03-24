@@ -7,6 +7,7 @@ import os
 import sqlite3
 import numpy as np
 import pandas as pd
+import sqlitecloud
 #from google.colab import userdata
 import google.generativeai as genai
 ## Configure Genai Key
@@ -25,10 +26,10 @@ def get_gemini_response(question,prompt):
 ## Fucntion To retrieve query from the database
 
 def read_sql_query(sql):
-    conn=sqlite3.connect("sqlitecloud://cbz5elionk.g1.sqlite.cloud:8860/Consumer_test1.db?apikey=73AjvC1jb2D2iU8b7ooP0ePONdYkQGaKbL5jbeTeOvA")
-    cur=conn.cursor()
-    cur.execute(sql)
-    rows=cur.fetchall()
+    conn=sqlitecloud.connect("sqlitecloud://cbz5elionk.g1.sqlite.cloud:8860/Consumer_test1.db?apikey=73AjvC1jb2D2iU8b7ooP0ePONdYkQGaKbL5jbeTeOvA")
+    cursor = conn.execute(sql)
+    #cur.execute(sql)
+    rows=cursor.fetchall()
     conn.commit()
     conn.close()
     for row in rows:
