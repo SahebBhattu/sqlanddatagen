@@ -1,3 +1,8 @@
 google-generativeai
 streamlit
 sqlitecloud
+pandas
+plotly
+yfinance
+pandas-datareader
+prophet
