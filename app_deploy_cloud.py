@@ -24,7 +24,7 @@ def get_gemini_response(question,prompt):
 
 ## Fucntion To retrieve query from the database
 
-def read_sql_query(sql,db):
+def read_sql_query(sql):
     conn=sqlite3.connect("sqlitecloud://cbz5elionk.g1.sqlite.cloud:8860/Consumer_test1.db?apikey=73AjvC1jb2D2iU8b7ooP0ePONdYkQGaKbL5jbeTeOvA")
     cur=conn.cursor()
     cur.execute(sql)
@@ -64,7 +64,7 @@ if submit:
     st.header("The generated SQL query is")
     st.subheader(response)
     print(response)
-    response=read_sql_query(response,"Consumer_test1.db")  
+    response=read_sql_query(response)  
     st.header("The generated output is")
     for row in response:
         print(row)
