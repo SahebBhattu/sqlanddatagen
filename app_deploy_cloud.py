@@ -12,6 +12,16 @@ import sqlitecloud
 import google.generativeai as genai
 ## Configure Genai Key
 
+
+
+# Add custom CSS to hide the GitHub icon
+hide_github_icon = """
+#GithubIcon {
+  visibility: hidden;
+}
+"""
+st.markdown(hide_github_icon, unsafe_allow_html=True)
+
 os.environ['GOOGLE_API_KEY'] = "AIzaSyCvxW1W7vVcaXVgqZGu_P6CIRHopQd42NE"
 genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
 
