@@ -3,12 +3,7 @@
 #load_dotenv() ## load all the environemnt variables
 
 import streamlit as st
-hide_github_icon = “”"
-#GithubIcon {
-visibility: hidden;
-}
-“”"
-st.markdown(hide_github_icon, unsafe_allow_html=True)
+
 import os
 import sqlite3
 import numpy as np
