@@ -3,6 +3,12 @@
 #load_dotenv() ## load all the environemnt variables
 
 import streamlit as st
+hide_github_icon = """
+#GithubIcon {
+  visibility: hidden;
+}
+"""
+st.markdown(hide_github_icon, unsafe_allow_html=True)
 import os
 import sqlite3
 import numpy as np
@@ -15,12 +21,7 @@ import google.generativeai as genai
 
 
 # Add custom CSS to hide the GitHub icon
-hide_github_icon = """
-#GithubIcon {
-  visibility: hidden;
-}
-"""
-st.markdown(hide_github_icon, unsafe_allow_html=True)
+
 
 os.environ['GOOGLE_API_KEY'] = "AIzaSyCvxW1W7vVcaXVgqZGu_P6CIRHopQd42NE"
 genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
