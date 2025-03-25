@@ -39,7 +39,7 @@ def read_sql_query(sql):
 ## Define Your Prompt
 prompt=[
     """    You are an expert in converting English questions to SQL query!
-    The SQL database has the name Customers and has the following columns - CustomerID,CustomerName,ContactName,Address,City,PostalCode,Country,Income
+    The SQL database has the name Customers and has the following columns - CustomerID,CustomerName,ContactName,Address,City,PostalCode,Country,Income, InsurancePlan
     The SQL database has the name Payout and has the following columns - Annuity_category_ID, CustomerID, EmployeeID, Payout_Date, Payment_cycle_ID
     The tables Customers and Payout can be joined on CustomerID column of Customers table and CustomerID column of Orders table
      \n\nFor example,\nExample 1 - How many entries of records are present?,
@@ -50,6 +50,7 @@ prompt=[
     Annuity_category_ID can be treaded as Annuity category ID or type of Annuity category
     Payout_Date can be treated as Payout Date 
     Payment_cycle_ID can be treated as Payment cycle ID
+    InsurancePlan can be treated as insurance plan
     Also the sql code should not have ``` in beginning or end and sql word in output
     only an executable SQL should be returned in the response
     don't add ';' at the end
