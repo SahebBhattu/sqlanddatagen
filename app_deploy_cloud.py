@@ -39,7 +39,8 @@ def read_sql_query(sql):
     #conn.commit()
     #conn.close()
     for row in rows:
-        print(row)
+        row1=row.replace("(", "")
+        print(row1)
     return rows
 
 ## Define Your Prompt
@@ -87,7 +88,6 @@ if submit:
     print(response)
     response_data=read_sql_query(response)
     print(response_data)
-    response_data = response_data.replace("(", "").replace(",)", "").replace(")", "")
     st.header("The generated output is")
     for row in response_data:
         print(row)
