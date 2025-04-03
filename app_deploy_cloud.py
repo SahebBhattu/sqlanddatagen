@@ -87,8 +87,8 @@ if submit:
     print(response)
     response_data=read_sql_query(response)
     print(response_data)
+    response_data = response_data.replace("(", "").replace(",)", "").replace(")", "")
     st.header("The generated output is")
     for row in response_data:
-        row = row.replace("(", "")
         print(row)
         st.subheader(row)
