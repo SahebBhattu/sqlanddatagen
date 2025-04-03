@@ -39,8 +39,7 @@ def read_sql_query(sql):
     #conn.commit()
     #conn.close()
     for row in rows:
-        row1=row.replace("(", "")
-        print(row1)
+        print(row)
     return rows
 
 ## Define Your Prompt
