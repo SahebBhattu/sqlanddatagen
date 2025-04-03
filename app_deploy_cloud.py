@@ -51,7 +51,7 @@ prompt=[
      \n\nFor example,\nExample 1 - How many entries of records are present?,
     the SQL command will be something like this SELECT COUNT(*) FROM Customers ;
     \nExample 2 - Tell me all the Customers located in USA?,
-    the SQL command will be something like this SELECT * FROM Customers
+    the SQL command will be something like this SELECT CustomerName, Country FROM Customers
     where Country="USA";
     Annuity_category_ID can be treaded as Annuity category ID or type of Annuity category
     Payout_Date can be treated as Payout Date 
