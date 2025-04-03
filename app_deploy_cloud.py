@@ -89,6 +89,6 @@ if submit:
     print(response_data)
     st.header("The generated output is")
     for row in response_data:
-        row = row.replace("(", "").replace(",)", "")..replace(")", "")
+        row = row.replace("(", "").replace(",)", "").replace(")", "")
         print(row)
         st.subheader(row)
