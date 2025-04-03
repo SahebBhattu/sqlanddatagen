@@ -56,7 +56,8 @@ prompt=[
     Annuity_category_ID can be treaded as Annuity category ID or type of Annuity category
     Payout_Date can be treated as Payout Date 
     Payment_cycle_ID can be treated as Payment cycle ID
-    InsurancePlan can be treated as insurance plan
+    InsurancePlan can be treated as insurance plan OR insurance_plan
+    CustomerID can be treated as Customer ID
     Also the sql code should not have ``` in beginning or end and sql word in output
     only an executable SQL should be returned in the response
     don't add ';' at the end
@@ -82,10 +83,12 @@ if submit:
     response=get_gemini_response(question,prompt)
     st.header("The generated SQL query is")
     st.subheader(response)
+    response = response.replace(";", "")
     print(response)
     response_data=read_sql_query(response)
     print(response_data)
     st.header("The generated output is")
     for row in response_data:
+        row = row.replace("(", "").replace(",)", "")..replace(")", "")
         print(row)
         st.subheader(row)
