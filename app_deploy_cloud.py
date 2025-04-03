@@ -52,7 +52,7 @@ prompt=[
     the SQL command will be something like this SELECT COUNT(*) FROM Customers ;
     \nExample 2 - Tell me all the Customers located in USA?,
     the SQL command will be something like this SELECT CustomerName, Country FROM Customers
-    where Country="USA";
+    where Country="UK";
     Annuity_category_ID can be treaded as Annuity category ID or type of Annuity category
     Payout_Date can be treated as Payout Date 
     Payment_cycle_ID can be treated as Payment cycle ID
