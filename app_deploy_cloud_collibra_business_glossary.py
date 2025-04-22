@@ -32,7 +32,7 @@ def get_gemini_response(question,prompt):
 ## Fucntion To retrieve query from the database
 
 def read_sql_query(sql):
-    conn=sqlitecloud.connect("sqlitecloud://cbz5elionk.g1.sqlite.cloud:8860/Consumer_test1.db?apikey=73AjvC1jb2D2iU8b7ooP0ePONdYkQGaKbL5jbeTeOvA")
+    conn=sqlitecloud.connect("sqlitecloud://cbz5elionk.g1.sqlite.cloud:8860/Consumer_test2_encrypted.db?apikey=73AjvC1jb2D2iU8b7ooP0ePONdYkQGaKbL5jbeTeOvA")
     cursor=conn.execute(sql)
     print("In the function")
     rows=cursor.fetchall()
@@ -45,8 +45,26 @@ def read_sql_query(sql):
 ## Define Your Prompt
 prompt=[
     """    You are an expert in converting English questions to SQL query!
-    The SQL database has the name Customers and has the following columns - CustomerID,CustomerName,ContactName,Address,City,PostalCode,Country,Income, InsurancePlan
+    The SQL database has the name Customers and has the following columns - Cust_ID,Cust_Nam,Contact_Nam,Add,City,P_Code,Ctry,IC, Ins_Plan
     The SQL database has the name Payout and has the following columns - Annuity_category_ID, CustomerID, EmployeeID, Payout_Date, Payment_cycle_ID
+
+    ------------------------------------------------------------------------------------------------------------
+    Please understand this business glossary while converting prompt input into actual column names of the table Customers:
+    It is given as 
+    actual column name = business glossary description
+    Cust_ID = It is a Customer ID 
+    Cust_Nam = It is a Customer's name
+    Contact_Nam = It is Contact Name
+    Add = It is Address of the customer
+    City = It is city where the customer lives
+    P_Code =  It is Postal code of that city
+    Ctry = It is the Country of the customer
+    IC = It is the Income of the customer
+    Ins_Plan = It is the Insurance Plan opted by the customer 
+    ------------------------------------------------------------------------------------------------------------
+    
+    
+    
     The tables Customers and Payout can be joined on CustomerID column of Customers table and CustomerID column of Orders table
      \n\nFor example,\nExample 1 - How many entries of records are present?,
     the SQL command will be something like this SELECT COUNT(*) FROM Customers ;
@@ -71,8 +89,8 @@ prompt=[
 
 ## Streamlit App
 
-st.set_page_config(page_title="I can Retrieve Any SQL query")
-st.header("GenAI SQL Query And Data Generator Complete Application")
+st.set_page_config(page_title="Query and Data Gen")
+st.header("GenAI SQL Query And Data Generator Complete Application_Collibra")
 
 question=st.text_input("Input: ",key="input")
 
