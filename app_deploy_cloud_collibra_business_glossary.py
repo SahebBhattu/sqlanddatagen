@@ -42,8 +42,40 @@ def read_sql_query(sql):
         print(row)
     return rows
 
+
+def get_columns_list(table_name):
+    #response=get_gemini_response(question,prompt)
+    response = "LIST METADATA TABLE "+table_name
+    response_data=read_sql_query(response)
+    #print("hello ")
+    #print(str(response_data));
+    metadata = [str(response_data)]
+    #print(metadata)
+    metadata = str(', '.join([col[0] for col in response_data]))
+    print(metadata)
+    return metadata
+
+
+
+
+def get_collibra_business_glossary():
+    response = "Select name, definition from collibra_business_glossary"
+    response_data=read_sql_query(response)
+    print("hello")
+    #print(response_data);
+    #metadata = [str(response_data)]
+    #print(metadata)
+    collibra_business_glossary = "    \n".join([f"{column} = {description}" for column, description in response_data])
+    return collibra_business_glossary
+
+
+
+
+
+
+
 ## Define Your Prompt
-prompt=[
+prompt_non_active=[
     """    You are an expert in converting English questions to SQL query!
     The SQL database has the name Customers and has the following columns - Cust_ID,Cust_Nam,Contact_Nam,Add,City,P_Code,Ctry,IC, Ins_Plan
     The SQL database has the name Payout and has the following columns - Annuity_category_ID, CustomerID, EmployeeID, Payout_Date, Payment_cycle_ID
@@ -70,6 +102,42 @@ prompt=[
     the SQL command will be something like this SELECT COUNT(*) FROM Customers ;
     \nExample 2 - Tell me all the Customers located in USA?,
     the SQL command will be something like this SELECT CustomerName, Country FROM Customers
+    where Country="UK";
+    Annuity_category_ID can be treaded as Annuity category ID or type of Annuity category
+    Payout_Date can be treated as Payout Date 
+    Payment_cycle_ID can be treated as Payment cycle ID
+    InsurancePlan can be treated as insurance plan OR insurance_plan
+    CustomerID can be treated as Customer ID
+    Also the sql code should not have ``` in beginning or end and sql word in output
+    only an executable SQL should be returned in the response
+    don't add ';' at the end
+    don't add '```sql' at the beginning , only an executable SQL query in the response
+    don't use DESCRIBE keyword
+    
+"""
+
+
+]
+
+prompt=[
+    """    You are an expert in converting English questions to SQL query!
+    The SQL database has the name Customers and has the following columns - """+get_columns_list("Customers")+""" 
+    The SQL database has the name Payout and has the following columns - Annuity_category_ID, CustomerID, EmployeeID, Payout_Date, Payment_cycle_ID
+
+    ------------------------------------------------------------------------------------------------------------
+    Please understand this business glossary while converting prompt input into actual column names of the table Customers:
+    It is given as 
+    actual column name = business glossary description
+    """+get_collibra_business_glossary()+"""
+    ------------------------------------------------------------------------------------------------------------
+    
+    
+    
+    The tables Customers and Payout can be joined on CustomerID column of Customers table and CustomerID column of Orders table
+     \n\nFor example,\nExample 1 - How many entries of records are present?,
+    the SQL command will be something like this SELECT COUNT(*) FROM Customers ;
+    \nExample 2 - Tell me all the Customers located in USA?,
+    the SQL command will be something like this SELECT Customer's Name, Country FROM Customers
     where Country="UK";
     Annuity_category_ID can be treaded as Annuity category ID or type of Annuity category
     Payout_Date can be treated as Payout Date 
