@@ -181,7 +181,7 @@ if submit:
     st.subheader(response)
     response = response.replace(";", "")
     print(response)
-    response_data=read_sql_query_output(response)
+    response_data=read_sql_query(response)
     print(response_data)
     st.header("The generated output is")
     st.dataframe(response_data)
