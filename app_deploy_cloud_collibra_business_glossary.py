@@ -174,6 +174,7 @@ if submit:
     response_data=read_sql_query(response)
     print(response_data)
     st.header("The generated output is")
+    st.dataframe(response_data)
     for row in response_data:
         print(row)
         st.subheader(row)
