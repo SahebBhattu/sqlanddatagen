@@ -43,6 +43,16 @@ def read_sql_query(sql):
     return rows
 
 
+def read_sql_query_output(query):
+    conn = sqlitecloud.connect("sqlitecloud://cbz5elionk.g1.sqlite.cloud:8860/Consumer_test2_encrypted.db?apikey=73AjvC1jb2D2iU8b7ooP0ePONdYkQGaKbL5jbeTeOvA")  # replace with your DB path or connection
+    cursor = conn.execute(query)
+    rows = cursor.fetchall()
+    columns = [desc[0] for desc in cursor.description]
+    return columns, rows
+
+
+
+
 def get_columns_list(table_name):
     #response=get_gemini_response(question,prompt)
     response = "LIST METADATA TABLE "+table_name
@@ -171,7 +181,7 @@ if submit:
     st.subheader(response)
     response = response.replace(";", "")
     print(response)
-    response_data=read_sql_query(response)
+    response_data=read_sql_query_output(response)
     print(response_data)
     st.header("The generated output is")
     st.dataframe(response_data)
