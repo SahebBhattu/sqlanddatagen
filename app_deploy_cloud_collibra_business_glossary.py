@@ -87,8 +87,8 @@ def get_collibra_business_glossary():
 ## Define Your Prompt
 prompt_non_active=[
     """    You are an expert in converting English questions to SQL query!
-    The SQL database has the name Customers and has the following columns - Cust_ID,Cust_Nam,Contact_Nam,Add,City,P_Code,Ctry,IC, Ins_Plan
-    The SQL database has the name Payout and has the following columns - Annuity_category_ID, CustomerID, EmployeeID, Payout_Date, Payment_cycle_ID
+    The SQL database has a table named Customers and it has the following columns - Cust_ID,Cust_Nam,Contact_Nam,Add,City,P_Code,Ctry,IC, Ins_Plan
+    The SQL database has a table named Payout and it has the following columns - Annuity_category_ID, CustomerID, EmployeeID, Payout_Date, Payment_cycle_ID
 
     ------------------------------------------------------------------------------------------------------------
     Please understand this business glossary while converting prompt input into actual column names of the table Customers:
@@ -135,6 +135,7 @@ prompt=[
     The SQL database has the name Payout and has the following columns - Annuity_category_ID, CustomerID, EmployeeID, Payout_Date, Payment_cycle_ID
 
     ------------------------------------------------------------------------------------------------------------
+    Business Glossary
     Please understand this business glossary while converting prompt input into actual column names of the table Customers:
     It is given as 
     actual column name = business glossary description
@@ -143,22 +144,43 @@ prompt=[
     
     
     
-    The tables Customers and Payout can be joined on CustomerID column of Customers table and CustomerID column of Orders table
+    
+    
      \n\nFor example,\nExample 1 - How many entries of records are present?,
     the SQL command will be something like this SELECT COUNT(*) FROM Customers ;
     \nExample 2 - Tell me all the Customers located in UK?
     the SQL command will be something like this SELECT Customer's Name, Country FROM Customers
     where Country="UK";
+
+    Table joins:
+    The tables Customers and Payout can be joined on Customer ID column of Customers table and Customer ID column of Payout table
+    example:
+    Find the customer who is from London and Payment cycle ID is 2
+    The SQL query will be like this
+    SELECT * FROM Customers
+    JOIN Payout ON Customers.customer ID = Payout.customer ID
+    WHERE City = 'London'
+    AND Payment cycle ID = 2;
+
+    Please always refer the Business Glossary before generating every SQL so that the right column names will get picked.
+
+    
     Annuity_category_ID can be treaded as Annuity category ID or type of Annuity category
     Payout_Date can be treated as Payout Date 
     Payment_cycle_ID can be treated as Payment cycle ID
     InsurancePlan can be treated as insurance plan OR insurance_plan
     CustomerID can be treated as Customer ID
+
+    Please always refer the Business Glossary before generating every SQL so that the right column names will get picked.
+
+    
     Also the sql code should not have ``` in beginning or end and sql word in output
     only an executable SQL should be returned in the response
     don't add ';' at the end
     don't add '```sql' at the beginning , only an executable SQL query in the response
     don't use DESCRIBE keyword
+
+    
     
 """
 
