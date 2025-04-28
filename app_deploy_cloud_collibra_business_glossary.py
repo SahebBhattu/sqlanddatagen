@@ -146,7 +146,7 @@ prompt=[
     The tables Customers and Payout can be joined on CustomerID column of Customers table and CustomerID column of Orders table
      \n\nFor example,\nExample 1 - How many entries of records are present?,
     the SQL command will be something like this SELECT COUNT(*) FROM Customers ;
-    \nExample 2 - Tell me all the Customers located in USA?,
+    \nExample 2 - Tell me all the Customers located in UK?
     the SQL command will be something like this SELECT Customer's Name, Country FROM Customers
     where Country="UK";
     Annuity_category_ID can be treaded as Annuity category ID or type of Annuity category
