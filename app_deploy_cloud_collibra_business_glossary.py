@@ -25,7 +25,8 @@ genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
 ## Function To Load Google Gemini Model and provide queries as response
 
 def get_gemini_response(question,prompt):
-    model=genai.GenerativeModel('gemini-1.5-pro-latest')
+    ##model=genai.GenerativeModel('gemini-1.5-pro-latest')
+    model=genai.GenerativeModel('gemini-2.5-pro-preview-05-06')
     response=model.generate_content([prompt[0],question])
     return response.text
 
